@@ -11,23 +11,28 @@
         <h4>Halaman Absensi</h4>
         <!--  Row 1 -->
         <div class="row">
-            <div class="col-lg-4 d-flex align-items-strech">
-                <div class="card w-100 h-25">
-                    <div class="card-header">
-                        Code Generator
-                    </div>
-                    <div class="card-body">
-                        <form data-route="./codeGenerator" id="form-data-kode">
-                            <button type="submit" class="btn btn-primary mb-4">
-                                <span>
-                                    <i class="ti ti-plus"></i>
-                                </span>
-                                <span class="hide-menu">Generate Code</span>
-                            </button>
-                        </form>
+            @if ((Auth::user()->role_id === 1) | (Auth::user()->role_id === 3))
+                <div class="col-lg-4 d-flex align-items-strech">
+                    <div class="card w-100 h-25">
+                        <div class="card-header">
+                            Code Generator
+                        </div>
+                        <div class="card-body">
+
+                            <form data-route="./codeGenerator" id="form-data-kode" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-primary mb-4">
+                                    <span>
+                                        <i class="ti ti-plus"></i>
+                                    </span>
+                                    <span class="hide-menu">Generate Code</span>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endif
+
             <div class="col-lg-8">
                 <div class="row">
                     <div class="col-lg-12">
@@ -198,8 +203,15 @@
                                 text: 'Kode Anda : ' + result['kode'],
                                 icon: 'success',
                                 confirmButtonText: 'Ok'
-                            })
+                            }).then((result) => {
+                                // If user clicks the confirm button
+                                if (result.isConfirmed) {
+                                    // Reload the page
+                                    location.reload();
+                                }
+                            });
                         };
+
                     })
                     .catch(function(error) {
                         console.error(error);
@@ -210,6 +222,7 @@
                 e.preventDefault();
                 generateCode();
             });
+
         });
     </script>
 @endsection

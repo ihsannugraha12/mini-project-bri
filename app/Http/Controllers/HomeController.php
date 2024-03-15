@@ -25,19 +25,12 @@ class HomeController extends Controller
         $kelas = Kelas::all();
         $materi = Materi::all();
         $value = null;
-        // $request->session()->forget('check_in');
 
-        // Check if session exists and if it has expired
         if ($request->session()->has('check_in')) {
             $sessionData = $request->session()->get('check_in');
-
-            // Check if session data is an array
             if (is_array($sessionData) && isset($sessionData['expires_at'])) {
                 $expiresAt = $sessionData['expires_at'];
-
-                // Check if session has expired
                 if (Carbon::now('Asia/Jakarta')->gt($expiresAt)) {
-                    // Session has expired, unset the session key
                     $request->session()->forget('check_in');
                 } else {
                     $value = $sessionData['value'];
@@ -63,11 +56,8 @@ class HomeController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
-
         return redirect('/login');
     }
 }

@@ -30,18 +30,15 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout']);
 
+Route::resource('/asisten', AsistenController::class)->middleware('isAdmin');
+Route::resource('/kelas', KelasController::class)->middleware('isAdmin');
+Route::resource('/materi', MateriController::class)->middleware('isAdmin');
 
-
-
-Route::resource('/asisten', AsistenController::class);
-Route::resource('/kelas', KelasController::class);
-Route::resource('/materi', MateriController::class);
-
-Route::get('/codeGenerator', [CodeGeneratorController::class, 'index']);
-Route::post('/codeGenerator', [CodeGeneratorController::class, 'store']);
+Route::get('/codeGenerator', [CodeGeneratorController::class, 'index'])->middleware('codeAcces');
+Route::post('/codeGenerator', [CodeGeneratorController::class, 'store'])->middleware('codeAcces');
 
 Route::post('/absensi', [AbsensiController::class, 'create']);
 Route::put('/absensi', [AbsensiController::class, 'update']);
 
-Route::get('/report', [ReportController::class, 'index']);
+Route::get('/report', [ReportController::class, 'index'])->middleware('isAdmin');
 Route::get('/riwayat', [RiwayatController::class, 'index']);

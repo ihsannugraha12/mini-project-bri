@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Projek Absensi</title>
-    <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
 
     <!-- Scripts -->
@@ -30,72 +29,76 @@
                     </div>
                 </div>
                 <!-- Sidebar navigation-->
-
                 <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
                     <ul id="sidebarnav">
                         <div class="accordion accordion-flush" id="accordionExample">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingOne">
-                                    <button class="accordion-button nav-small-cap collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                                        aria-controls="collapseOne">
-                                        <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                                        <span class="hide-menu">Data</span>
-                                    </button>
-                                </h2>
-                                <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne"
-                                    data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        <li class="sidebar-item">
-                                            <a class="sidebar-link" href="./asisten" aria-expanded="false">
-                                                <span>
-                                                    <i class="ti ti-user"></i>
-                                                </span>
-                                                <span class="hide-menu">Data Asisten</span>
-                                            </a>
-                                        </li>
-                                        <li class="sidebar-item">
-                                            <a class="sidebar-link" href="./kelas" aria-expanded="false">
-                                                <span>
-                                                    <i class="ti ti-school"></i>
-                                                </span>
-                                                <span class="hide-menu">Data Kelas</span>
-                                            </a>
-                                        </li>
-                                        <li class="sidebar-item">
-                                            <a class="sidebar-link" href="./materi" aria-expanded="false">
-                                                <span>
-                                                    <i class="ti ti-book"></i>
-                                                </span>
-                                                <span class="hide-menu">Data Materi</span>
-                                            </a>
-                                        </li>
+                            @if (Auth::user()->role_id === 1)
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button nav-small-cap collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                            aria-controls="collapseOne">
+                                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                            <span class="hide-menu">Data</span>
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse "
+                                        aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <li class="sidebar-item">
+                                                <a class="sidebar-link" href="./asisten" aria-expanded="false">
+                                                    <span>
+                                                        <i class="ti ti-user"></i>
+                                                    </span>
+                                                    <span class="hide-menu">Data Asisten</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-item">
+                                                <a class="sidebar-link" href="./kelas" aria-expanded="false">
+                                                    <span>
+                                                        <i class="ti ti-school"></i>
+                                                    </span>
+                                                    <span class="hide-menu">Data Kelas</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-item">
+                                                <a class="sidebar-link" href="./materi" aria-expanded="false">
+                                                    <span>
+                                                        <i class="ti ti-book"></i>
+                                                    </span>
+                                                    <span class="hide-menu">Data Materi</span>
+                                                </a>
+                                            </li>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingOne">
-                                    <button class="accordion-button nav-small-cap collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true"
-                                        aria-controls="collapseTwo">
-                                        <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                                        <span class="hide-menu">Generator</span>
-                                    </button>
-                                </h2>
-                                <div id="collapseTwo" class="accordion-collapse collapse " aria-labelledby="headingTwo"
-                                    data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        <li class="sidebar-item">
-                                            <a class="sidebar-link" href="/codeGenerator" aria-expanded="false">
-                                                <span>
-                                                    <i class="ti ti-qrcode"></i>
-                                                </span>
-                                                <span class="hide-menu">Code Generator</span>
-                                            </a>
-                                        </li>
+                            @endif
+
+                            @if (Auth::user()->role_id === 1 || Auth::user()->role_id === 3)
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button nav-small-cap collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true"
+                                            aria-controls="collapseTwo">
+                                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                            <span class="hide-menu">Generator</span>
+                                        </button>
+                                    </h2>
+                                    <div id="collapseTwo" class="accordion-collapse collapse "
+                                        aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <li class="sidebar-item">
+                                                <a class="sidebar-link" href="/codeGenerator" aria-expanded="false">
+                                                    <span>
+                                                        <i class="ti ti-qrcode"></i>
+                                                    </span>
+                                                    <span class="hide-menu">Code Generator</span>
+                                                </a>
+                                            </li>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endif
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingThree">
                                     <button class="accordion-button nav-small-cap collapsed" type="button"
@@ -108,14 +111,16 @@
                                 <div id="collapseThree" class="accordion-collapse collapse "
                                     aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        <li class="sidebar-item">
-                                            <a class="sidebar-link" href="/report" aria-expanded="false">
-                                                <span>
-                                                    <i class="ti ti-book"></i>
-                                                </span>
-                                                <span class="hide-menu">Report</span>
-                                            </a>
-                                        </li>
+                                        @if (Auth::user()->role_id === 1)
+                                            <li class="sidebar-item">
+                                                <a class="sidebar-link" href="/report" aria-expanded="false">
+                                                    <span>
+                                                        <i class="ti ti-book"></i>
+                                                    </span>
+                                                    <span class="hide-menu">Report</span>
+                                                </a>
+                                            </li>
+                                        @endif
                                         <li class="sidebar-item">
                                             <a class="sidebar-link" href="/riwayat" aria-expanded="false">
                                                 <span>
@@ -127,14 +132,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="mt-3">
-                                <li class="sidebar-item">
-                                    <a class="sidebar-link btn btn-light-primary" href="/asisten/{{ Auth::id() }}"
-                                        aria-expanded="false">
-                                        <span class="hide-menu">My Profile</span>
-                                    </a>
-                                </li>
-                            </div>
+
                             <div class="mt-3">
                                 <li class="sidebar-item">
                                     <a class="sidebar-link btn btn-light-primary" href="/logout">
