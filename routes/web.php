@@ -1,9 +1,15 @@
 <?php
 
+use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\AsistenController;
+use App\Http\Controllers\CodeGeneratorController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KelasController;
+use App\Http\Controllers\MateriController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\RiwayatController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,5 +28,20 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout']);
 
-Route::resource('asisten', AsistenController::class);
+
+
+
+Route::resource('/asisten', AsistenController::class);
+Route::resource('/kelas', KelasController::class);
+Route::resource('/materi', MateriController::class);
+
+Route::get('/codeGenerator', [CodeGeneratorController::class, 'index']);
+Route::post('/codeGenerator', [CodeGeneratorController::class, 'store']);
+
+Route::post('/absensi', [AbsensiController::class, 'create']);
+Route::put('/absensi', [AbsensiController::class, 'update']);
+
+Route::get('/report', [ReportController::class, 'index']);
+Route::get('/riwayat', [RiwayatController::class, 'index']);

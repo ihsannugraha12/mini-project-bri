@@ -4,9 +4,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Modernize Free</title>
+    <title>Projek Absensi</title>
     <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
 </head>
 
 <body>
@@ -18,8 +22,8 @@
             <!-- Sidebar scroll-->
             <div>
                 <div class="brand-logo d-flex align-items-center justify-content-between">
-                    <a href="./index.html" class="text-nowrap logo-img">
-                        <img src="../assets/images/logos/dark-logo.svg" width="180" alt="" />
+                    <a href="/home" class="text-nowrap logo-img">
+                        Absensi
                     </a>
                     <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                         <i class="ti ti-x fs-8"></i>
@@ -51,7 +55,7 @@
                                             </a>
                                         </li>
                                         <li class="sidebar-item">
-                                            <a class="sidebar-link" href="./index.html" aria-expanded="false">
+                                            <a class="sidebar-link" href="./kelas" aria-expanded="false">
                                                 <span>
                                                     <i class="ti ti-school"></i>
                                                 </span>
@@ -59,7 +63,7 @@
                                             </a>
                                         </li>
                                         <li class="sidebar-item">
-                                            <a class="sidebar-link" href="./index.html" aria-expanded="false">
+                                            <a class="sidebar-link" href="./materi" aria-expanded="false">
                                                 <span>
                                                     <i class="ti ti-book"></i>
                                                 </span>
@@ -82,7 +86,7 @@
                                     data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
                                         <li class="sidebar-item">
-                                            <a class="sidebar-link" href="./index.html" aria-expanded="false">
+                                            <a class="sidebar-link" href="/codeGenerator" aria-expanded="false">
                                                 <span>
                                                     <i class="ti ti-qrcode"></i>
                                                 </span>
@@ -105,23 +109,38 @@
                                     aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
                                         <li class="sidebar-item">
-                                            <a class="sidebar-link" href="./index.html" aria-expanded="false">
+                                            <a class="sidebar-link" href="/report" aria-expanded="false">
                                                 <span>
-                                                    <i class="ti ti-layout-dashboard"></i>
+                                                    <i class="ti ti-book"></i>
                                                 </span>
-                                                <span class="hide-menu">Dashboard</span>
+                                                <span class="hide-menu">Report</span>
                                             </a>
                                         </li>
                                         <li class="sidebar-item">
-                                            <a class="sidebar-link" href="./index.html" aria-expanded="false">
+                                            <a class="sidebar-link" href="/riwayat" aria-expanded="false">
                                                 <span>
-                                                    <i class="ti ti-layout-dashboard"></i>
+                                                    <i class="ti ti-book"></i>
                                                 </span>
-                                                <span class="hide-menu">Dashboard</span>
+                                                <span class="hide-menu">Riwayat Absen</span>
                                             </a>
                                         </li>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="mt-3">
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link btn btn-light-primary" href="/asisten/{{ Auth::id() }}"
+                                        aria-expanded="false">
+                                        <span class="hide-menu">My Profile</span>
+                                    </a>
+                                </li>
+                            </div>
+                            <div class="mt-3">
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link btn btn-light-primary" href="/logout">
+                                        <span class="hide-menu">Logout</span>
+                                    </a>
+                                </li>
                             </div>
                         </div>
                     </ul>
@@ -133,7 +152,7 @@
 
         <div class="body-wrapper">
             <!--  Header Start -->
-            <header class="app-header">
+            {{-- <header class="app-header">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <div class="navbar-collapse justify-content-end px-0" id="navbarNav"
                         style="border-bottom: 1px solid black; ">
@@ -161,39 +180,20 @@
                         </ul>
                     </div>
                 </nav>
-            </header>
+            </header> --}}
             @yield('content')
 
         </div>
 
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
     <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/sidebarmenu.js"></script>
     <script src="../assets/js/app.min.js"></script>
-    <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-    <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
-    <script src="../assets/js/dashboard.js"></script>
 
-    <script>
-        const timeElement = document.getElementById("clock");
 
-        function updateTime() {
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = now.getMinutes();
-            const seconds = now.getSeconds();
-
-            // Format the string with leading zeroes
-            const clockStr =
-                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
-            timeElement.innerText = clockStr;
-        }
-
-        updateTime();
-        setInterval(updateTime, 1000);
-    </script>
+    @yield('script')
 </body>
 
 </html>

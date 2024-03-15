@@ -15,12 +15,15 @@ class CreateAbsensiTable extends Migration
     {
         Schema::create('absensi', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_asisten')->constrained('users');
+            $table->integer('id_asisten');
             $table->string('teaching_role');
-            $table->timestamp('date');
+            $table->string('kelas');
+            $table->string('materi');
+            $table->date('date');
             $table->time('start', $precision = 0)->nullable(true);
             $table->time('end', $precision = 0)->nullable(true);
-            $table->foreignId('id_code')->constrained('code');
+            $table->integer('duration');
+            $table->integer('id_code');
             $table->timestamps();
         });
     }
